@@ -8,12 +8,15 @@ Inspired by: https://www.youtube.com/watch?v=vpU_6x3jowg
 
 ## HOWTO
 
-Create the dataset and the index by running:
+Create the dataset used to build the index:
 
 `create_dataset.py`
+
+Build and save the index:
+
 `create_index.py`
 
-Afterwards, the index can be queried with:
+Afterwards, the index can be queried with, e.g.:
 
 `query_index.py --query "What is the meaning of life?"`
 
