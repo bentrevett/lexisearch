@@ -1,0 +1,5 @@
+tqdm
+webvtt
+sentence-transformers
+datasets
+faiss-gpu
