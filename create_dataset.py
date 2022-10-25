@@ -1,13 +1,16 @@
-from pathlib import Path
-import webvtt
-import tqdm
 import json
+from pathlib import Path
+
+import tqdm
+import webvtt
+
 
 def timestamp_to_seconds(timestamp):
     h, m, s = timestamp.split(":")
     s = s.split(".")[0]
-    seconds = int(h) * 60*60 + int(m) * 60 + int(s)
-    return seconds 
+    seconds = int(h) * 60 * 60 + int(m) * 60 + int(s)
+    return seconds
+
 
 def parse_vtt(path):
     return [
@@ -21,6 +24,7 @@ def parse_vtt(path):
         for caption in webvtt.read(path)
     ]
 
+
 window = 6
 stride = 3
 
@@ -33,10 +37,13 @@ with dataset_path.open("w") as f:
 for path in tqdm.tqdm(data_paths):
     captions = parse_vtt(path)
     for i in range(0, len(captions), stride):
-        i_end = min(len(captions)-1, i+window)
-        text = ' '.join([c["text"] for c in captions[i:i_end]])
+        i_end = min(len(captions) - 1, i + window)
+        text = " ".join([c["text"] for c in captions[i:i_end]])
         start_timestamp, start = captions[i]["start_timestamp"], captions[i]["start"]
-        end_timestamp, end = captions[i_end]["start_timestamp"], captions[i_end]["start"]
+        end_timestamp, end = (
+            captions[i_end]["start_timestamp"],
+            captions[i_end]["start"],
+        )
         id = path.stem
         example = {
             "text": text,

@@ -1,7 +1,8 @@
 from pathlib import Path
+
 import requests
-from bs4 import BeautifulSoup
 import tqdm
+from bs4 import BeautifulSoup
 
 paths = sorted([p for p in Path("vtt").glob("*") if "large" in p.stem])
 
