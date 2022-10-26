@@ -8,6 +8,10 @@ Inspired by: https://www.youtube.com/watch?v=vpU_6x3jowg
 
 ## HOWTO
 
+Install the requirements:
+
+`pip install -r requirements.txt`
+
 Create the dataset used to build the index:
 
 `python create_dataset.py`
