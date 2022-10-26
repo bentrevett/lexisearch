@@ -130,3 +130,5 @@ dmypy.json
 
 dataset.jsonl
 index.faiss
+vtt/
+data.zip
