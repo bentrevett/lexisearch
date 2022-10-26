@@ -10,7 +10,7 @@ logging.disable(logging.CRITICAL)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--query", type=str, required=True)
-parser.add_argument("--k", type=int, default=10)
+parser.add_argument("--k", type=int, default=5)
 args = parser.parse_args()
 
 model = sentence_transformers.SentenceTransformer(
@@ -22,7 +22,9 @@ dataset.load_faiss_index("embeddings", "index.faiss")
 
 query_embedding = model.encode(args.query)
 _, retrieved_examples = dataset.get_nearest_examples(
-    "embeddings", query_embedding, k=10
+    "embeddings",
+    query_embedding,
+    k=args.k,
 )
 
 
@@ -38,4 +40,4 @@ for text, start, end, title, id in zip(
     print(f"title: {title}")
     print(f"transcript: [{start}] {text}")
     print(f"link: https://youtu.be/{id}?t={utils.timestamp_to_seconds(start)}")
-    print("*" * 88)
+    print("*" * 10)
