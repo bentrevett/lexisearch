@@ -5,17 +5,12 @@ from pathlib import Path
 import tqdm
 import webvtt
 
+import utils
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--window", type=int, default=6)
 parser.add_argument("--stride", type=int, default=3)
 args = parser.parse_args()
-
-
-def timestamp_to_seconds(timestamp):
-    h, m, s = timestamp.split(":")
-    s = s.split(".")[0]
-    seconds = int(h) * 60 * 60 + int(m) * 60 + int(s)
-    return seconds
 
 
 def parse_vtt(path):
@@ -24,8 +19,8 @@ def parse_vtt(path):
             "text": caption.text.strip(),
             "start_timestamp": caption.start,
             "end_timestamp": caption.end,
-            "start": timestamp_to_seconds(caption.start),
-            "end": timestamp_to_seconds(caption.end),
+            "start": utils.timestamp_to_seconds(caption.start),
+            "end": utils.timestamp_to_seconds(caption.end),
         }
         for caption in webvtt.read(path)
     ]
