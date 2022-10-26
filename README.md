@@ -1,5 +1,9 @@
 # lexisearch
 
+<p align="center">
+  <img src="lexisearch.png">
+</p>
+
 Use semantic similarity models to query transcriptions from the [Lex Fridman Podcast](https://lexfridman.com/podcast/).
 
 Transcriptions were obtained from [lexicap](https://karpathy.ai/lexicap/) using [Whisper](https://github.com/openai/whisper).
